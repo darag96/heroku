@@ -1,5 +1,5 @@
 <?php
-$url = parse_url(getenv("DATABASE_URL"));
+$url = parse_url(getenv("pgsql_DATABASE_URL"));
 
 $host = $url["host"];
 $username = $url["user"];
