@@ -14,7 +14,7 @@ class ItemsController extends Controller
     public function index()
     {
         $items = Item::all();
-        return response()->json($items);
+        return response()->json($items,207);
     }
 
     /**
@@ -35,7 +35,8 @@ class ItemsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $item = Item::create($request->all());
+        return response()->json($item, 201);
     }
 
     /**
@@ -46,7 +47,8 @@ class ItemsController extends Controller
      */
     public function show($id)
     {
-        //
+        $item = Item::findOrFail($id);
+        return response()->json($item,208);
     }
 
     /**
@@ -69,7 +71,9 @@ class ItemsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $item = Item::findOrFail($id);
+        $item->update($request->all());
+        return response()->json($item,200);
     }
 
     /**
@@ -80,6 +84,8 @@ class ItemsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = Item::findOrFail($id);
+        $item->delete();
+        return response()->json(null,204);
     }
 }
